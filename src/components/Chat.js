@@ -1,10 +1,15 @@
 import { InfoOutlined, StarBorderOutlined } from '@mui/icons-material';
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { styled } from 'styled-components'
+import {selectRoomId} from "../features/appSlice";
+import ChatInput from './ChatInput';
 
 function Chat() {
+    const roomId = useSelector(selectRoomId);
   return (
     <ChatContainer >
+        <>
         <Header>
             <HeaderLeft>
                 <h4><strong>#Room-name</strong></h4>
@@ -17,6 +22,16 @@ function Chat() {
                 </p>
             </HeaderRight>
         </Header>
+
+        <ChatMessages>
+            
+        </ChatMessages>
+
+        <ChatInput 
+            // channelname  
+            channelId = {roomId}
+        />
+        </>
     </ChatContainer>
   )
 }
@@ -52,6 +67,15 @@ const HeaderRight = styled.div`
         align-items: center;
         font-size: 14px;
     }
+
+    > p > .MuiSvgIcon-root{
+        margin-right: 5px !important;
+        font-size: 16px;
+    }
+`;
+
+const ChatMessages = styled.div`
+
 `;
 
 const ChatContainer = styled.div`
