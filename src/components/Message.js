@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 function Message({message, timestamp, user, userImage}) {
   return (
     <MessageContainer>
-        <img src={userImage} alt={`profile picture of ${user}`}/>
+        <img src={userImage} alt={`pp of ${user}`}/>
         <MessageInfo>
             <h4>
                 {user}{''}

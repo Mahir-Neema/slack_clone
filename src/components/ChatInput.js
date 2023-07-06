@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 import {db} from '../firebase';
 import firebase from 'firebase/compat/app';
 
-function ChatInput({channelName, channelId}) {
+function ChatInput({channelName, channelId, chatRef}) {
 
     const [input,setinput] = useState('');
 
@@ -19,6 +19,10 @@ function ChatInput({channelName, channelId}) {
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             user: 'M N',
             userImage: 'https://img.freepik.com/premium-photo/beautiful-girl-white-background-woman_902994-458.jpg?w=740'
+        });
+
+        chatRef.current.scrollIntoView({
+            behavior: "smooth",
         });
 
         setinput('');
