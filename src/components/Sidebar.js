@@ -2,22 +2,24 @@ import { Add, Apps, BookmarkBorder, Create, Drafts, ExpandLess, ExpandMore, Fibe
 import React from 'react'
 import { styled } from 'styled-components';
 import SidebarOptions from './SidebarOptions';
-import { db } from '.././firebase';
+import { auth, db } from '.././firebase';
 import {useCollection} from "react-firebase-hooks/firestore";
 import { doc, getDoc } from "firebase/firestore";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Sidebar() {
 
   const [channels, loading, error] = useCollection(db.collection('rooms'));
+  const [user] = useAuthState(auth);
 
   return (
     <SidebarConatiner>
         <SidebarHeader>
           <SidebarInfo>
-              <h2>MAHIR</h2>
+              <h2>Slack Clone</h2>
               <h3>
                 <FiberManualRecord/>
-                Mahir Neema
+                {user.displayName}
               </h3>
           </SidebarInfo>
           <Create/>
