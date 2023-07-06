@@ -39,10 +39,6 @@ function Sidebar() {
         <hr/>
         <SidebarOptions Icon={Add} addChannelOption title="Add Channel"/>
 
-        {/* {channels ? getDoc.map(doc=>(
-          <SidebarOptions  key={doc.id} id={doc.id}  title={doc.data().name}/>
-        )):""} */}
-
         {channels && channels.docs && channels.docs.map((doc) => (
           <SidebarOptions key={doc.id} id={doc.id} title={doc.data().name} />
         ))}
@@ -53,6 +49,7 @@ function Sidebar() {
 
 export default Sidebar
 
+
 const SidebarConatiner = styled.div`
   background-color: var(--slack—color);
   flex: 0.3;
@@ -60,6 +57,7 @@ const SidebarConatiner = styled.div`
   border-top: 1px solid #49274b;
   max-width: 260px;
   margin-top:60px;
+  overflow-y: scroll;
 
   > hr{
     margin-top: 10px;

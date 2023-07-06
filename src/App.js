@@ -17,7 +17,7 @@ function App() {
     return(
       <AppLoading>
         <AppLoadingContents>
-          <img src="https://www.vectorlogo.zone/logos/slack/slack-tile.svg"/>
+          <img src="https://www.vectorlogo.zone/logos/slack/slack-tile.svg" alt="slack logo"/>
           <Spinner 
             name="ball-spin-fade-loader"
             color="purple"
