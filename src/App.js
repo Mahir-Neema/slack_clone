@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 import Login from "./components/Login";
 import Spinner from "react-spinkit";
+import UsersPage from "./components/UsersPage";
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -40,6 +41,7 @@ function App() {
               <Sidebar />
               <Routes>
                 <Route path="/" element={<Chat />} />
+                <Route path="/userlist" element={<UsersPage/>}/> 
               </Routes>
             </AppBody>
           </>

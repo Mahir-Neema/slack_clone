@@ -7,6 +7,7 @@ import ChatInput from "./ChatInput";
 import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import Message from "./Message";
+import UsersPage from "./UsersPage";
 
 function Chat() {
   const chatRef = useRef(null);

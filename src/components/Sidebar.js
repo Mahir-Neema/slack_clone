@@ -6,6 +6,7 @@ import { auth, db } from '.././firebase';
 import {useCollection} from "react-firebase-hooks/firestore";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { NavLink } from 'react-router-dom';
 
 function Sidebar() {
 
@@ -29,7 +30,8 @@ function Sidebar() {
         <SidebarOptions Icon={Inbox} title="Mentions & Reactions"/>
         <SidebarOptions Icon={Drafts} title="Saved Items"/>
         <SidebarOptions Icon={BookmarkBorder} title="Channel browser"/>
-        <SidebarOptions Icon={PeopleAlt} title="People & user Groups"/>
+        <NavLink to='/userlist' style={{ textDecoration: 'none', color: 'inherit' }}><SidebarOptions Icon={PeopleAlt}  title="People & user Groups"/></NavLink>
+        {/* <SidebarOptions Icon={PeopleAlt} id="userlist" title="People & user Groups"/> */}
         <SidebarOptions Icon={Apps} title="Apps"/>
         <SidebarOptions Icon={FileCopy} title="File browser"/>
         <SidebarOptions Icon={ExpandLess} title="Show less"/>
@@ -39,9 +41,13 @@ function Sidebar() {
         <hr/>
         <SidebarOptions Icon={Add} addChannelOption title="Add Channel"/>
 
-        {channels && channels.docs && channels.docs.map((doc) => (
-          <SidebarOptions key={doc.id} id={doc.id} title={doc.data().name} />
-        ))}
+
+        <NavLink to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          {channels && channels.docs && channels.docs.map((doc) => (
+            <SidebarOptions key={doc.id} id={doc.id} title={doc.data().name} />
+          ))}
+        </NavLink>
+        
 
     </SidebarConatiner>
   )
