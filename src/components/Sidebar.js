@@ -1,5 +1,5 @@
 import { Add, Apps, BookmarkBorder, Create, Drafts, ExpandLess, ExpandMore, FiberManualRecord, FileCopy, Inbox, InsertComment, PeopleAlt } from '@mui/icons-material';
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import SidebarOptions from './SidebarOptions';
 import { auth, db } from '.././firebase';
@@ -12,6 +12,7 @@ function Sidebar() {
 
   const [channels, loading, error] = useCollection(db.collection('rooms'));
   const [user] = useAuthState(auth);
+  const [showmore,setshowmore] = useState(false);
 
   return (
     <SidebarConatiner>
@@ -34,19 +35,19 @@ function Sidebar() {
         {/* <SidebarOptions Icon={PeopleAlt} id="userlist" title="People & user Groups"/> */}
         <SidebarOptions Icon={Apps} title="Apps"/>
         <SidebarOptions Icon={FileCopy} title="File browser"/>
-        <SidebarOptions Icon={ExpandLess} title="Show less"/>
+        <div onClick={()=>setshowmore(true)}>{!showmore && <SidebarOptions Icon={ExpandMore} title="Show more"/>}</div>
 
         <hr/>
-        <SidebarOptions Icon={ExpandMore} title="Show more"/>
-        <hr/>
+        <div onClick={()=>setshowmore(false)}>{showmore && <SidebarOptions Icon={ExpandLess} title="Show less" />}</div>
+        {showmore && <hr/>}
         <SidebarOptions Icon={Add} addChannelOption title="Add Channel"/>
 
 
-        <NavLink to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+        {showmore && <NavLink to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
           {channels && channels.docs && channels.docs.map((doc) => (
             <SidebarOptions key={doc.id} id={doc.id} title={doc.data().name} />
           ))}
-        </NavLink>
+        </NavLink>}
         
 
     </SidebarConatiner>
